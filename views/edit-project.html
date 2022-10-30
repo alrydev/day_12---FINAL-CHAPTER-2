@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project</title>
+    <link rel="icon" href="../public/images/icon.png">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-25 px-5 sticky-top" style="height: 9vh;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="../public/images/logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link ms-4 pe-4" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active ms-4" href="/form-project">Add Project</a>
+            </li>
+          </ul>
+          <a href="/contact">
+              <button type="button" class="btn btn-dark">Contact Me</button>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ADD PROJECT SECTION -->
+    <div class="container d-flex flex-wrap align-items-center justify-content-center" >
+        <!-- <form action="/add-project" method="POST"> -->
+        <form action="/edit-project/{{.Project.Id}}" method="POST">
+            <h3 class="text-center mt-5">EDIT PROJECT</h3>
+            <label for="inputTitle" class="form-label">Name</label>
+            <input type="text" id="inputTitle" class="form-control mb-3" name="inputTitle" value="{{.Project.Title}}">
+
+            <div class="row">
+                <div class="col">
+                  <label for="input-startDate" class="form-label">Start Date</label>
+                  <input type="date" class="form-control mb-3" id="input-startDate" name="inputStartDate" value="{{.Project.StartDateFormat}}">
+                </div>
+                <div class="col">
+                  <label for="input-endDate" class="form-label">End Date</label>
+                  <input type="date" class="form-control mb-3" id="input-endDate" name="inputEndDate" value="{{.Project.EndDateFormat}}">
+                </div>
+            </div>
+
+            <label for="input-desc" class="form-label">Description</label>
+            <textarea class="form-control mb-3" id="input-desc" name="inputDesc" rows="3">{{.Project.Desc}}</textarea>
+
+            <label for="input-tech" class="form-label">Technologies</label>
+            <div class="d-flex justify-content-between me-5 flex-wrap">
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="htmlchecked" name="inputHtml">
+                  <label class="form-check-label" for="input-html">
+                    HTML <i class="fa-brands fa-html5"></i>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="csschecked" name="inputCss">
+                  <label class="form-check-label" for="input-css">
+                    CSS <i class="fa-brands fa-css3"></i>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="jschecked" name="inputJs">
+                  <label class="form-check-label" for="input-js">
+                    Javascript <i class="fa-brands fa-js"> </i>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="bootstrapchecked" name="inputBootstrap">
+                  <label class="form-check-label" for="input-bootstrap">
+                    Bootstrap <i class="fa-brands fa-bootstrap"> </i>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <label for="input-image" class="form-label mt-3">Upload Image</label>
+            <input type="file" class="form-control mb-2" id="input-image" name="inputImage">
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-dark mt-2 px-5 py-1 mb-5">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

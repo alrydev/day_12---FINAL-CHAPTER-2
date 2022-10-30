@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="../public/images/icon.png">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+<!-- NAVIGATION BAR -->
+ <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-25 px-5 sticky-top" style="height: 9vh;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="../public/images/logo.png" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active ms-4 pe-4" aria-current="page" href="/">Home</a>
+          </li>
+          {{if .DataSession.IsLogin}}
+            <a class="nav-link" href="/form-project">Add Project</a>
+          {{end}}
+        </ul>
+
+        {{if .DataSession.IsLogin}}
+        <div>
+          <a href="#" class="text-decoration-none pe-4 text-dark">{{.DataSession.UserName}}</a>
+          <a href="/logout" class="text-decoration-none pe-4 text-secondary">Log Out</a>
+        </div>
+
+
+        
+        {{else}} 
+        <ul class="navbar-nav me-3 mb-2 mb-lg-0 text-center" >
+          <li class="nav-item">
+            <a class="nav-link" href="/form-register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/form-login">Login</a>
+          </li>
+        </ul>
+        {{end}}
+
+        <a href="/contact">
+            <button type="button" class="btn btn-dark">Contact Me</button>
+        </a>
+      </div>
+    </div>
+  </nav>
+ 
+
+  <!-- CARD -->
+  <div class="section" 
+          style="
+          background-image: url(../public/images/container-wallpaper2.jpg);
+          padding-top: 10px;
+          padding-bottom: 40px;
+          background-size: cover;
+          ">
+    <div class="container d-flex bg-secondary bg-opacity-25  pt-5 p-3 shadow rounded align-items-center pb-5"
+          style="
+          background-image: url(../public/images/opacitywall.png);
+          background-size: cover;
+          margin-top:70px;
+          margin-bottom: 40px;
+          ">
+  
+      <div style="width: 60%;">
+          <h2 class="mb-4">hi, welcome to my page ...</h2>
+          <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dolorum dolores explicabo veniam earum magni illum nobis sequi numquam aliquid consequatur repudiandae ex aliquam minima delectus perspiciatis, eos quia ad! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, est molestias, ex
+          </p>
+          <div class="mt-4">
+              <a href="#" class="text-decoration-none">
+                  <button type="button" class="btn btn-dark">Contact Me</button>
+              </a>
+              <a href="#" class="text-decoration-none">
+                  <button type="button" class="btn btn-light bg-transparent ms-4">
+                      Download CV <i class="fa-solid fa-download"></i>
+                  </button>
+              </a>
+          </div>
+  
+          <div class="mt-5 d-flex justify-content-between" style="width: 50%;">
+              <a href="https://www.linkedin.com/in/alri-diputra/" target="_blank" class="text-decoration-none text-dark fs-5">
+                    <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/Alriydev" target="_blank" class="text-decoration-none text-dark fs-5">
+                <i class="fa-brands fa-github"></i>
+            </a>
+              <a href="#" class="text-decoration-none text-dark fs-5">
+                  <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="#" class="text-decoration-none text-dark fs-5">
+                  <i class="fa-brands fa-twitter"></i>
+              </a>
+  
+          </div>
+      </div>
+  
+      <div class="d-flex justify-content-center ms-5">
+          <div class="card text-center" style="width: 40%;">
+              <img src="../public/images/profil.jpg" class="card-img-top" alt="..." >
+              <div class="card-body">
+                <h5 class="card-title ">Alri Diputra</h5>
+                <p class="card-text">Fullstack Developer</p>
+              </div>
+          </div>
+      </div>
+  
+    </div>
+
+  </div>
+
+
+  <!-- PROJECT CARDS -->
+  <div class="py-5 bg-white">
+    <h2 class="text-center block mt-5 mb-3">MY PROJECT</h2>
+    
+    <div class="countainer p-3 d-flex justify-content-evenly flex-wrap">
+      {{range $index, $data := .Projects}}
+        <div class="card p-2 shadow" style="width: 18rem;">
+            <img src="/uploads/{{$data.Image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <a href="/project-detail/{{$data.Id}}" target="_blank" class="text-decoration-none text-dark">
+                <h5 class="card-title mb-0">{{$data.Title}} </h5>
+                <p class="card-text mb-1"><small class="text-muted">by: {{$data.Author}}</small></p>
+              </a>
+              <p class="card-text"><small class="text-muted">duration: {{$data.Duration}}</small></p>
+              <p class="card-text">{{$data.Desc}}</p>
+              <div class="mb-3 d-flex justify-content-between" style="width: 60%;">
+                <span><i class="{{$data.HtmlIcon}}"></i></span>
+                <span><i class="{{$data.CssIcon}}"></i></span>
+                <span><i class="{{$data.JavascriptIcon}}"></i></span>
+                <span><i class="{{$data.BootstrapIcon}}"></i></span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <a class="btn btn-dark px-4 fs-6" href="/formEditProject/{{$data.Id}}">edit</a>
+                <a class="btn btn-dark px-3" href="/delete-project/{{$data.Id}}">delete</a>
+              </div>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    
+  </div>
+
+</body>
+</html>

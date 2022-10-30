@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=sec, initial-scale=1.0">
+    <title>Project Detail</title>
+    <link rel="stylesheet" href="../public/css/project-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link rel="icon" href="../public/images/icon.png">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-25 px-5 sticky-top" style="height: 9vh;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img src="../public/images/logo.png" alt="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active ms-4 pe-4" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ms-4" href="/form-project">Add Project</a>
+              </li>
+            </ul>
+            <a href="/contact">
+                <button type="button" class="btn btn-dark">Contact Me</button>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+    <section>
+        <h2 class="mb-0 pb-0">{{.Project.Title}}</h2>
+        <p class="card-text"><small class="text-muted d-flex justify-content-center pb-4"> {{.Project.Author}}</small></p>
+        <div class="desc">
+            <div class="desc-left">
+                <img src="/uploads/{{.Project.Image}}" alt="" style="width: 70%;">
+            </div>
+            <div class="desc-right">
+                <div class="desc-right-top">
+                    <h3>Duration</h3>
+                    <span><i class="fa-solid fa-calendar-days"></i> {{.Project.StartDateFormat}} - {{.Project.EndDateFormat}}</span>
+                    <span><i class="fa-regular fa-clock"></i> {{.Project.Duration}}</span>
+                </div>
+                <div class="desc-right-bottom mt-5">
+                    <h3>Technologies</h3>
+                    <div style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    "> 
+                        <p style="font-size: 30px; padding-right: 20px;"><i class="{{.Project.HtmlIcon}}"></i></p>
+                        <p style="font-size: 30px; padding-right: 20px;"><i class="{{.Project.CssIcon}}"></i></p>
+                        <p style="font-size: 30px; padding-right: 20px;"> <i class="{{.Project.JavascriptIcon}}"></i></p>
+                        <p style="font-size: 30px; padding-right: 20px;"><i class="{{.Project.BootstrapIcon}}"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+          
+            <p>
+                {{.Project.Desc}}
+            </p>
+        </div>
+    </section>
+</body>
+</html>

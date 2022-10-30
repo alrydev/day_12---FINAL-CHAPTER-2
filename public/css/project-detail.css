@@ -1,0 +1,151 @@
+* {
+    font-family: Optima, Segoe, Arial, sans-serif;
+}
+
+body {
+    background-color: rgb(224, 224, 224);
+    margin: 0;
+}
+
+
+section h2 {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.desc {
+    /* background-color: olive; */
+    display: flex;
+
+}
+
+.desc .desc-left {
+    flex: 1;
+    /* background-color: wheat; */
+    text-align: center;
+    padding-left: 40px;
+}
+
+
+.desc .desc-right {
+    flex: 1;
+    display: block;
+
+}
+
+.desc-right-top {
+    /* background-color: aqua; */
+    flex: 1;
+}
+
+.desc-right-top span {
+    display: block;
+    padding-bottom: 10px;
+}
+
+.desc-right-bottom {
+    /* background-color: yellow; */
+    flex: 1;
+}
+
+.desc-right-bottom span {
+    padding-bottom: 20px;
+    width: 70%;
+    /* background-color: aqua; */
+    font-size: smaller;
+}
+
+.project-content {
+    /* background-color: wheat; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.project-content p {
+    width: 80%;
+    /* background-color: aqua; */
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+/*  Navigation Bar
+****************************************** */
+nav {
+    display: flex;
+    background-color: rgb(240, 240, 240);
+    padding-bottom: 0px;
+    height: 9vh;
+}
+
+nav .left {
+    flex: 50%;
+    /* background-color: aquamarine; */
+    display: flex;
+    padding-top: 0;
+
+}
+
+nav .left ul {
+    display: flex;
+    /* background-color: burlywood; */
+    width: 50%;
+    justify-content: space-evenly;
+    list-style: none;
+    align-items: center;
+    margin-left: 50px;
+}
+
+nav .left ul li a {
+    color: rgb(70, 70, 70);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    cursor: pointer;
+    /* background-color: yellowgreen; */
+}
+
+nav .left ul li a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    /* display: block; */
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: rgb(0, 0, 0);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+nav .left ul li a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+
+nav .right {
+    flex: 50%;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+nav .right span {
+    /* background-color: black; */
+    background-color: rgb(56, 56, 56);
+    color: white;
+    margin-right: 150px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+nav .right span a {
+    text-decoration: none;
+    color: white;
+}
