@@ -42,7 +42,6 @@ func main() {
 
 	route.HandleFunc("/formEditProject/{id}", formEditProject).Methods("GET")
 	route.HandleFunc("/edit-project/{id}", edit).Methods("POST")
-	// route.HandleFunc("/edit-project/{id}", middleware.UploadFile(edit)).Methods("POST")
 
 	route.HandleFunc("/form-login", formLogin).Methods("GET")
 	route.HandleFunc("/login", login).Methods("POST")
@@ -102,6 +101,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// FOR STORING SESSION COOKIES
 	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
 	session, _ := store.Get(r, "SESSION_KEY")
 
@@ -112,15 +112,18 @@ func home(w http.ResponseWriter, r *http.Request) {
 		Data.UserName = session.Values["Name"].(string)
 	}
 
+	// QUERY GET DATA FROM DB
 	data, err := connection.Conn.Query(context.Background(), "SELECT tb_project.id, title, image, description, duration, html_icon, css_icon, js_icon, bs_icon, tb_user.name as author FROM public.tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id")
 	if err != nil {
 		w.Write([]byte("message: " + err.Error()))
 		return
 	}
+
 	var result []Project
+
 	for data.Next() {
 		var each = Project{}
-
+		// SCAN PROCESS, LINKING EACH DATA FROM DB WITH STRUCT
 		err := data.Scan(&each.Id, &each.Title, &each.Image, &each.Desc, &each.Duration, &each.HtmlIcon, &each.CssIcon, &each.JavascriptIcon, &each.BootstrapIcon, &each.Author)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -352,6 +355,7 @@ func formLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fm := session.Flashes("message")
+
 	var flashes []string
 	if len(fm) > 0 {
 		session.Save(r, w)
@@ -375,7 +379,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	user := User{}
 
-	// mengambil dan melakukan pengecekan email
+	// EMAIL CHECKING
 	err = connection.Conn.QueryRow(context.Background(), "SELECT * FROM public.tb_user WHERE email=$1", email).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
 	if err != nil {
 		var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
@@ -390,7 +394,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(user)
 
-	// pengecekan password
+	// PASSWORD CHECKING
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
 		var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
@@ -403,15 +407,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var store = sessions.NewCookieStore([]byte("SESSION_KEY")) //untuk mengatur expired penyimpanan
+	var store = sessions.NewCookieStore([]byte("SESSION_KEY"))
 	session, _ := store.Get(r, "SESSION_KEY")
 
-	//untuk menyimpan data pada session dalam browser: (untuk setelahnya ditampilkan dalam index.html atau handle /)
+	// FOR STORING DATA IN SESSION
 	session.Values["Name"] = user.Name
 	session.Values["Email"] = user.Email
-	session.Values["Id"] = user.Id // sebagai relasi antara table user dengn table project
+	session.Values["Id"] = user.Id //  as a relation between tb_user and tb_project
 	session.Values["isLogin"] = true
-	session.Options.MaxAge = 10800 // 10800 seconds = 3 hours adalah masa penyimpanan
+	session.Options.MaxAge = 10800 // 10800 seconds = 3 hours
 
 	session.AddFlash("Login Success, Go To Home Page", "message")
 	session.Save(r, w)
@@ -441,6 +445,8 @@ func formEditProject(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
 	ProjectEdit := Project{}
+
+	// QUERY GET DATA PROJECT FROM DB BY ID
 	err = connection.Conn.QueryRow(context.Background(), "SELECT id, title, image, description, start_date, end_date, html_icon, css_icon, js_icon, bs_icon FROM public.tb_project WHERE id = $1", id).Scan(&ProjectEdit.Id, &ProjectEdit.Title, &ProjectEdit.Image, &ProjectEdit.Desc, &ProjectEdit.StartDate, &ProjectEdit.EndDate, &ProjectEdit.HtmlIcon, &ProjectEdit.CssIcon, &ProjectEdit.JavascriptIcon, &ProjectEdit.BootstrapIcon)
 
 	ProjectEdit.StartDateFormat = ProjectEdit.StartDate.Format("2006-01-02")
